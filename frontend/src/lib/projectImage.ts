@@ -6,6 +6,8 @@ export function isProjectImageUrl(image?: string): boolean {
   return (
     image.startsWith('http://') ||
     image.startsWith('https://') ||
+    image.startsWith('data:') ||
+    image.startsWith('blob:') ||
     image.startsWith('/uploads/') ||
     image.startsWith('/')
   )
@@ -13,7 +15,13 @@ export function isProjectImageUrl(image?: string): boolean {
 
 export function getProjectImageUrl(image?: string): string | null {
   if (!image?.trim() || !isProjectImageUrl(image)) return null
-  if (image.startsWith('http://') || image.startsWith('https://')) return image
+  if (
+    image.startsWith('http://') ||
+    image.startsWith('https://') ||
+    image.startsWith('data:') ||
+    image.startsWith('blob:')
+  )
+    return image
   if (image.startsWith('/uploads/')) return `${API_URL}${image}`
   if (image.startsWith('/')) return image
   return `${API_URL}/${image}`

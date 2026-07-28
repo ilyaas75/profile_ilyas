@@ -1,3 +1,4 @@
+import { Mail } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { useProfile } from '../context/ProfileContext'
 import { navItems } from '../data/navigation'
@@ -34,6 +35,13 @@ export function Footer() {
                 aria-label="LinkedIn"
               >
                 <LinkedInIcon size={18} />
+              </a>
+              <a
+                href={`mailto:${profile.email}`}
+                className="text-theme-faint transition-colors hover:text-accent-teal"
+                aria-label="Email"
+              >
+                <Mail size={18} />
               </a>
             </div>
           </div>

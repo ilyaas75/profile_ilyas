@@ -9,6 +9,7 @@ export const profile: Profile = {
   availability: 'Open to Opportunities',
   email: 'ilyaasxasan75@gmail.com',
   location: 'Available Worldwide',
+  avatar: '/avatar.png',
   social: {
     github: 'https://github.com/ilyaas75',
     linkedin: 'https://www.linkedin.com/in/ilyas-hassan-mohamed-b5710132a',

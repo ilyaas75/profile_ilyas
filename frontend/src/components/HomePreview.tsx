@@ -2,6 +2,8 @@ import { Code2, Database, Smartphone } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { useProfile } from '../context/ProfileContext'
 import { useProjects } from '../context/ProjectsContext'
+import { isProjectImageUrl } from '../lib/projectImage'
+import { ProjectImage } from './ProjectCard'
 import { SectionTitle } from './SectionTitle'
 
 const expertise = [
@@ -85,8 +87,16 @@ export function HomePreview() {
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {featured.map((project, index) => (
-              <Link key={`${project.title}-${index}`} to="/projects" className="surface-card card-hover p-5">
-                <span className="text-3xl">{project.image.startsWith('/') || project.image.startsWith('http') ? '🖼️' : project.image}</span>
+              <Link key={`${project.title}-${index}`} to="/projects" className="surface-card card-hover flex flex-col p-5">
+                {isProjectImageUrl(project.image) ? (
+                  <ProjectImage
+                    image={project.image}
+                    title={project.title}
+                    className="mb-3 h-32 w-full rounded-lg object-cover"
+                  />
+                ) : (
+                  <span className="mb-3 text-3xl">{project.image || '📁'}</span>
+                )}
                 <h4 className="mt-3 font-semibold text-theme-primary">{project.title}</h4>
                 <p className="mt-2 line-clamp-2 text-sm text-theme-muted">{project.description}</p>
                 <div className="mt-3 flex flex-wrap gap-1.5">

@@ -3,7 +3,13 @@ const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
 /** Resolve avatar URL from API path, full URL, or local public path */
 export function getAvatarUrl(avatar?: string): string | null {
   if (!avatar?.trim()) return null
-  if (avatar.startsWith('http://') || avatar.startsWith('https://')) return avatar
+  if (
+    avatar.startsWith('http://') ||
+    avatar.startsWith('https://') ||
+    avatar.startsWith('data:') ||
+    avatar.startsWith('blob:')
+  )
+    return avatar
   if (avatar.startsWith('/uploads/')) return `${API_URL}${avatar}`
   if (avatar.startsWith('/')) return avatar
   return `${API_URL}/${avatar}`

@@ -342,13 +342,20 @@ export function AdminProjectsPage() {
                     className="text-sm text-theme-muted file:mr-3 file:rounded-lg file:border-0 file:bg-accent-teal file:px-3 file:py-1.5 file:text-sm file:font-medium file:text-white disabled:opacity-50"
                   />
                   <div>
-                    <label className="form-label text-xs">Or emoji (if no image)</label>
+                    <label className="form-label text-xs">Image URL or Emoji icon</label>
                     <input
                       className="form-input text-sm"
-                      placeholder="📊"
-                      value={isProjectImageUrl(form.image) ? '' : form.image}
-                      onChange={(e) => setForm({ ...form, image: e.target.value || '📁' })}
-                      disabled={isProjectImageUrl(form.image)}
+                      placeholder="📊 or https://example.com/project.jpg"
+                      value={form.image || ''}
+                      onChange={(e) => {
+                        const val = e.target.value
+                        setForm({ ...form, image: val })
+                        if (isProjectImageUrl(val)) {
+                          setImagePreview(val)
+                        } else {
+                          setImagePreview(null)
+                        }
+                      }}
                     />
                   </div>
                   {(isProjectImageUrl(form.image) || imagePreview) && (
