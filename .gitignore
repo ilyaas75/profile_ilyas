@@ -1,0 +1,19 @@
+node_modules/
+dist/
+.env
+*.log
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+
+# Backend
+backend/node_modules/
+backend/.env
+backend/uploads/
+
+# Flutter
+app/.dart_tool/
+app/build/
+app/.flutter-plugins-dependencies
