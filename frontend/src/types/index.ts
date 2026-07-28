@@ -1,4 +1,11 @@
-export type ProjectCategory = 'Web' | 'Backend' | 'Mobile' | 'Full-Stack'
+export type ProjectCategory =
+  | 'Web'
+  | 'Backend'
+  | 'Mobile'
+  | 'Full-Stack'
+  | 'AI / ML'
+  | 'Desktop'
+  | 'Other'
 
 export interface Project {
   title: string
